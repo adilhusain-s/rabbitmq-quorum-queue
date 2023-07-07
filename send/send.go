@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"time"
 
@@ -39,7 +40,7 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
-	body := "Hello World!"
+	body := fmt.Sprintf("msg:  %v : %v", time.Now().Minute(), time.Now().Second())
 	err = ch.PublishWithContext(ctx,
 		"",     // exchange
 		q.Name, // routing key

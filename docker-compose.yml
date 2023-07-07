@@ -2,25 +2,32 @@ version: '3.8'
 
 services:
   rb1:
+    hostname: node1
     image: 'rabbitmq:3.10-management-alpine'
     env_file:
       - ./.env
     ports:
       - "5672:5672"
-      - "15672:15672"
+      - "2005:15672"
     volumes:
-      - ./rabbitmq.conf:/etc/rabbitmq.conf
+      - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
   rb2:
-    image: 'rabbitmq:3.10-management-alpine'
+    hostname: node2
+    image: 'rabbitmq:3.10-alpine'
     env_file:
       - ./.env
     ports:
       - "5673:5672"
-      - "15673:15672"
+      - "2007:15672"
     volumes:
-      - ./rabbitmq.conf:/etc/rabbitmq.conf
+      - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
   rb3:
-    image: 'rabbitmq:3.10-management-alpine'
+    hostname: node3
+    image: 'rabbitmq:3.10-alpine'
+    env_file:
+      - ./.env
     ports:
       - "5674:5672"
-      - "15674:15672"
+      - "2010:15672"
+    volumes:
+      - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
