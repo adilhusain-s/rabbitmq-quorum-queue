@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  rb1:
+    image: 'rabbitmq:3.10-management-alpine'
+    env_file:
+      - ./.env
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - ./rabbitmq.conf:/etc/rabbitmq.conf
+  rb2:
+    image: 'rabbitmq:3.10-management-alpine'
+    env_file:
+      - ./.env
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+    volumes:
+      - ./rabbitmq.conf:/etc/rabbitmq.conf
+  rb3:
+    image: 'rabbitmq:3.10-management-alpine'
+    ports:
+      - "5674:5672"
+      - "15674:15672"
